@@ -9,4 +9,6 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+    
+    public DbSet<PARCIAL_CASTRO.Models.Transacciones> DataTransacciones { get;set;}
 }

@@ -1,0 +1,82 @@
+@model List<PARCIAL_CASTRO.Models.Transacciones>
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      background-color: #f8f9fa; /* Color de fondo suave */
+    }
+
+    h2 {
+      color: #007bff; /* Color del título */
+    }
+
+    .table {
+      margin-top: 20px; /* Espaciado superior de la tabla */
+    }
+
+    .table th {
+      text-align: center; /* Centrar texto en encabezados */
+    }
+
+    .table td {
+      vertical-align: middle; /* Centrar verticalmente el contenido de las celdas */
+    }
+
+    .btn-custom {
+      background-color: #28a745; /* Verde */
+      color: white; /* Texto en blanco */
+      border: none; /* Sin borde */
+    }
+
+    .btn-custom:hover {
+      background-color: #218838; /* Color más oscuro al pasar el ratón */
+      color: white; /* Mantener texto en blanco */
+    }
+  </style>
+  <h2>Lista de Transacciones</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="text-align: center">Remitente</th>
+        <th style="text-align: center">Destinatario</th>
+        <th style="text-align: center">País Origen</th>
+        <th style="text-align: center">País Destino</th>
+        <th style="text-align: center">Monto Enviado</th>
+        <th style="text-align: center">Tipo de Moneda Enviado</th>
+        <th style="text-align: center">Tasa de Cambio</th>
+        <th style="text-align: center">Monto Final</th>
+        <th style="text-align: center">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (Model != null && Model.Any()) { @foreach (var transaccion in Model) {
+      <tr>
+        <td>@transaccion.NombreRem</td>
+        <td>@transaccion.NombreDes</td>
+        <td>@transaccion.PaisOri</td>
+        <td>@transaccion.PaisDest</td>
+        <td>@transaccion.MontoEnv</td>
+        <td>@transaccion.TipTrans</td>
+        <td>@transaccion.TasaCam</td>
+        <td>@transaccion.MontoFin</td>
+        <td>@transaccion.Estado</td>
+      </tr>
+      } } else {
+      <tr>
+        <td colspan="8" style="text-align: center">
+          No hay registros de transacciones disponibles.
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="text-center mt-4">
+    <a asp-action="Create" class="btn btn-success btn-lg"
+      >Registrar Nueva Transacción</a>
+  </div>
+</PARCIAL_CASTRO.Models.Transacciones>

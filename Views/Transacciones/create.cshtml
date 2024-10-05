@@ -1,0 +1,71 @@
+@model PARCIAL_CASTRO.Models.Transacciones
+
+<link
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<style>
+  body {
+    background-color: #f8f9fa; /* Color de fondo suave */
+  }
+
+  h2 {
+    color: #007bff; /* Color del título */
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem; /* Espaciado entre campos */
+  }
+
+  .btn-custom {
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave */
+  }
+
+  .btn-custom:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+  }
+</style>
+
+<h2>Registrar Transacción</h2>
+
+<form asp-controller="Transacciones" asp-action="Create" method="post">
+  <div class="form-group">
+    <label asp-for="NombreRem">Nombre remitente</label>
+    <input asp-for="NombreRem" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label asp-for="NombreDes">Nombre Destino</label>
+    <input asp-for="NombreDes" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label asp-for="PaisOri">Pais Origen</label>
+    <input asp-for="PaisOri" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label asp-for="PaisDest">Pais Destino</label>
+    <input asp-for="PaisDest" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label asp-for="MontoEnv">Monto Enviado</label>
+    <input asp-for="MontoEnv" class="form-control" type="number" step="0.01" />
+  </div>
+  <div class="form-group">
+    <label asp-for="TipTrans">Tipo de Transacciones</label>
+    <select asp-for="TipTrans" class="form-control">
+      <option value="USD">Dólares Estadounidenses (USD)</option>
+      <option value="BTC">Bitcoin (BTC)</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label asp-for="Estado">Estado</label>
+    <input asp-for="Estado" class="form-control" />
+  </div>
+  <br />
+  <button type="submit" class="btn-custom">Registrar</button>
+</form>
