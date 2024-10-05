@@ -1,17 +1,23 @@
+# Etapa de construcción
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-COPY .csproj ./
+# Copia el archivo de proyecto y restaura dependencias
+COPY *.csproj ./
 RUN dotnet restore
 
+# Copia el resto del código y construye
 COPY . ./
 RUN dotnet publish -c Release -o out
 
+# Etapa de producción
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build-env /app/out .
 
-#CAMBIAR AQUI EL NOMBRE DEL APLICATIVO
-#nombre de tu app busca en bin\Release**\netcore5.0\plantitas.exe
+# Copia los archivos construidos desde la etapa anterior
+COPY --from=build-env /app/out ./
+
+# Cambia el nombre de tu aplicación aquí
 ENV APP_NET_CORE PARCIAL_CASTRO.dll 
 
-CMD ASPNETCORE_URLS=http://:$PORT dotnet $APP_NET_CORE
+CMD ["sh", "-c", "ASPNETCORE_URLS=http://*:$PORT dotnet $APP_NET_CORE"]
